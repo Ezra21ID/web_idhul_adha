@@ -104,4 +104,3 @@ switch ($aksi) {
 // Arahkan pengguna kembali ke halaman daftar qurban
 header("Location: data_qurban.php");
 exit();
-?>

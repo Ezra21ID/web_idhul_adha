@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Ganti path ini sesuai struktur Anda
-require_once '../include/config.php'; 
+require_once '../include/config.php';
 require_once 'partials/header.php';
 
 // Ambil semua data warga dan status distribusinya
@@ -40,20 +40,21 @@ $result = $conn->query($sql);
                 </thead>
                 <tbody>
                     <?php if ($result->num_rows > 0): ?>
-                        <?php $no = 1; while($row = $result->fetch_assoc()): ?>
+                        <?php $no = 1;
+                        while ($row = $result->fetch_assoc()): ?>
                             <tr>
                                 <td><?php echo $no++; ?></td>
                                 <td><?php echo htmlspecialchars($row['nama']); ?></td>
                                 <td>
                                     <?php
-                                        $roles = [];
-                                        if ($row['is_panitia']) $roles[] = 'Panitia';
-                                        if ($row['is_berqurban']) $roles[] = 'Berqurban';
-                                        if (empty($roles)) {
-                                            echo 'Warga Biasa';
-                                        } else {
-                                            echo 'Warga + ' . implode(' + ', $roles);
-                                        }
+                                    $roles = [];
+                                    if ($row['is_panitia']) $roles[] = 'Panitia';
+                                    if ($row['is_berqurban']) $roles[] = 'Berqurban';
+                                    if (empty($roles)) {
+                                        echo 'Warga Biasa';
+                                    } else {
+                                        echo 'Warga + ' . implode(' + ', $roles);
+                                    }
                                     ?>
                                 </td>
                                 <td>
@@ -69,7 +70,9 @@ $result = $conn->query($sql);
                             </tr>
                         <?php endwhile; ?>
                     <?php else: ?>
-                        <tr><td colspan="5" class="text-center">Tidak ada data warga.</td></tr>
+                        <tr>
+                            <td colspan="5" class="text-center">Tidak ada data warga.</td>
+                        </tr>
                     <?php endif; ?>
                 </tbody>
             </table>
